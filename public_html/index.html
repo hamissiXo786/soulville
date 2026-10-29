@@ -9,6 +9,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+3:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="css/home.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Soulville in Bloom",
+        "description": "An evening of poetry, storytelling and spoken word. Theme: the blooming of flowers.",
+        "startDate": "2026-07-31T18:30:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+            "@type": "Place",
+            "name": "South Beach Gallery",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 South Beach",
+                "addressLocality": "Durban",
+                "postalCode": "4001",
+                "addressCountry": "ZA"
+            }
+        },
+        "organizer": { "@type": "Organization", "name": "Soulville", "url": "https://soulville.msmera.co.za/" }
+    }
+    </script>
 </head>
 <body>
 
@@ -19,6 +42,19 @@
     <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v8a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2Z"/><path d="M14 6v12" stroke-dasharray="2 2"/></symbol>
+    <symbol id="bloom" viewBox="-20 -20 40 40">
+        <g>
+            <ellipse cx="0" cy="-9" rx="4.6" ry="9"/>
+            <ellipse cx="0" cy="-9" rx="4.6" ry="9" transform="rotate(45)"/>
+            <ellipse cx="0" cy="-9" rx="4.6" ry="9" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-9" rx="4.6" ry="9" transform="rotate(135)"/>
+            <ellipse cx="0" cy="-9" rx="4.6" ry="9" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-9" rx="4.6" ry="9" transform="rotate(225)"/>
+            <ellipse cx="0" cy="-9" rx="4.6" ry="9" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-9" rx="4.6" ry="9" transform="rotate(315)"/>
+        </g>
+        <circle r="4.2" fill="#FCFBF7" fill-opacity=".85"/>
+    </symbol>
 </svg>
 
 <a class="skip" href="#main">Skip to content</a>
@@ -33,11 +69,6 @@
             <span class="brand-place">Durban</span>
         </a>
 
-        <button class="nav-toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
-            <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
-            Menu
-        </button>
-
         <nav class="site-nav" id="site-nav" data-open="false" aria-label="Main">
             <ul>
                 <li><a href="index.html" aria-current="page">Home</a></li>
@@ -46,9 +77,16 @@
                 <li><a href="1_pages/community.html">Community</a></li>
                 <li><a href="1_pages/gallery.html">Gallery</a></li>
                 <li><a href="1_pages/contact.html">Contact</a></li>
-                <li><a class="nav-donate" href="1_pages/donate.html">Donate</a></li>
+                <li><a href="1_pages/donate.html">Donate</a></li>
             </ul>
         </nav>
+
+        <a class="btn btn-accent btn-sm" href="booking/book.php">Book a seat</a>
+
+        <button class="nav-toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+            <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+            Menu
+        </button>
 
     </div>
 </header>
@@ -69,33 +107,54 @@
                     <span class="line"><em>home.</em></span>
                 </h1>
 
-                <p class="hero-lede">
+                <p class="lede">
                     We create accessible platforms for artists, strengthen community connections,
                     support emerging talent and celebrate artistic expression through inclusive,
                     collaborative programming.
                 </p>
 
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="1_pages/community.html">
+                    <a class="btn btn-solid" href="1_pages/community.html">
                         Join the community
+                        <svg class="icon icon-move" aria-hidden="true"><use href="#i-arrow"/></svg>
+                    </a>
+                    <a class="link-arrow" href="1_pages/event.html">
+                        <span>See upcoming events</span>
                         <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
                     </a>
-                    <a class="btn btn-secondary" href="1_pages/event.html">Upcoming events</a>
                 </div>
-
-                <ul class="disciplines" aria-label="Disciplines">
-                    <li>Poetry</li>
-                    <li>Lyricism</li>
-                    <li>Neo Soul</li>
-                    <li>Visual arts</li>
-                    <li>Community</li>
-                </ul>
             </div>
 
-            <!-- Next event, styled as a ticket stub -->
+            <!-- Next event: one bordered region (ticket) holds everything about it -->
             <article class="ticket" aria-labelledby="event-title" id="next-event">
 
-                <div class="ticket-top">
+                <div class="ticket-media">
+                    <svg viewBox="0 0 400 175" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+                        <g stroke="#7F9C8B" stroke-width="2" fill="none" stroke-linecap="round">
+                            <path d="M28 175 C30 150 26 135 28 122"/>
+                            <path d="M78 175 C70 140 82 110 76 72"/>
+                            <path d="M150 175 C154 150 146 128 150 106"/>
+                            <path d="M232 175 C224 130 240 96 232 58"/>
+                            <path d="M310 175 C316 145 304 120 310 96"/>
+                            <path d="M366 175 C362 130 370 92 366 62"/>
+                        </g>
+                        <g fill="#7F9C8B" fill-opacity=".8">
+                            <ellipse cx="88" cy="128" rx="11" ry="4.5" transform="rotate(-30 88 128)"/>
+                            <ellipse cx="220" cy="120" rx="12" ry="5" transform="rotate(30 220 120)"/>
+                            <ellipse cx="320" cy="140" rx="10" ry="4" transform="rotate(-25 320 140)"/>
+                            <ellipse cx="141" cy="146" rx="10" ry="4" transform="rotate(28 141 146)"/>
+                        </g>
+                        <use href="#bloom" x="10" y="104" width="36" height="36" fill="#E6EEE8"/>
+                        <use href="#bloom" x="44" y="38" width="66" height="66" fill="#D9B8B8"/>
+                        <use href="#bloom" x="124" y="80" width="52" height="52" fill="#C96A3D"/>
+                        <use href="#bloom" x="192" y="18" width="80" height="80" fill="#D9B8B8"/>
+                        <use href="#bloom" x="284" y="70" width="52" height="52" fill="#E6EEE8"/>
+                        <use href="#bloom" x="342" y="38" width="48" height="48" fill="#CC5500"/>
+                    </svg>
+                    <img src="images/latest-event.jpg" alt="Soulville open mic night" onerror="this.remove()">
+                </div>
+
+                <div class="ticket-head">
                     <p class="eyebrow">Next Soulville experience</p>
                     <h2 id="event-title" data-event="name">Soulville in Bloom</h2>
                     <p class="ticket-theme">Theme: the blooming of flowers</p>
@@ -119,17 +178,15 @@
                         </div>
                     </dl>
 
-                    <p class="seats">
-                        <span class="dot" aria-hidden="true"></span>
-                        <span><strong data-event="seats">47</strong> seats still available</span>
-                    </p>
-
-                    <div class="ticket-actions">
-                        <a class="btn btn-book" href="booking/book.php">
+                    <div class="ticket-cta">
+                        <p class="seats">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span><strong data-event="seats">47</strong> seats left</span>
+                        </p>
+                        <a class="btn btn-accent" href="booking/book.php">
                             <svg class="icon" aria-hidden="true"><use href="#i-ticket"/></svg>
                             Book your seat
                         </a>
-                        <a class="btn btn-ghost" href="1_pages/event.html">All events</a>
                     </div>
                 </div>
 
@@ -138,11 +195,23 @@
         </div>
     </section>
 
+    <!-- ===================== DISCIPLINES ===================== -->
+
+    <div class="disciplines">
+        <ul class="wrap" aria-label="Disciplines">
+            <li>Poetry</li>
+            <li>Lyricism</li>
+            <li>Neo Soul</li>
+            <li>Visual arts</li>
+            <li>Community</li>
+        </ul>
+    </div>
+
     <!-- ===================== ABOUT ===================== -->
 
-    <section class="section section-alt" aria-labelledby="about-title">
+    <section class="section" aria-labelledby="about-title">
         <div class="wrap about-grid">
-            <div>
+            <div class="about-title">
                 <p class="eyebrow">About Soulville</p>
                 <h2 id="about-title">A home for the spoken, the sung and the seen.</h2>
             </div>
@@ -156,43 +225,53 @@
                     shared experiences, from the first nervous verse at an open mic to a full evening
                     of performance.
                 </p>
-                <p>
-                    <a class="btn btn-ghost" href="1_pages/about.html">
-                        Read our story
-                        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-                    </a>
-                </p>
+                <a class="link-arrow" href="1_pages/about.html">
+                    <span>Read our story</span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- ===================== WHAT WE DO ===================== -->
 
-    <section class="section" aria-labelledby="do-title">
+    <section class="section section-alt" aria-labelledby="do-title">
         <div class="wrap">
             <div class="section-head">
                 <p class="eyebrow">What we do</p>
                 <h2 id="do-title">Three ways in.</h2>
-                <p>Whether you write, perform or simply love to listen, there is a seat for you.</p>
+                <p class="lede">Whether you write, perform or simply love to listen, there is a seat for you.</p>
             </div>
 
-            <div class="pillars">
-                <article class="pillar">
+            <ul class="pillars">
+                <li class="pillar">
                     <span class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span>
                     <h3>Perform</h3>
                     <p>Take the stage and share your poetry during our open mic sessions.</p>
-                </article>
-                <article class="pillar">
+                    <a class="link-arrow" href="1_pages/event.html">
+                        <span>Find an open mic</span>
+                        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                    </a>
+                </li>
+                <li class="pillar">
                     <span class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-people"/></svg></span>
                     <h3>Connect</h3>
                     <p>Meet fellow poets and collaborate on creative ideas.</p>
-                </article>
-                <article class="pillar">
+                    <a class="link-arrow" href="1_pages/community.html">
+                        <span>Meet the community</span>
+                        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                    </a>
+                </li>
+                <li class="pillar">
                     <span class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-pen"/></svg></span>
                     <h3>Create</h3>
                     <p>Develop your writing through workshops, discussions and mentorship.</p>
-                </article>
-            </div>
+                    <a class="link-arrow" href="1_pages/gallery.html">
+                        <span>See the work</span>
+                        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                    </a>
+                </li>
+            </ul>
         </div>
     </section>
 
@@ -209,8 +288,8 @@
                         <span class="turn">But the words that change lives</span>
                         <span class="turn">are spoken from the <em>soul.</em></span>
                     </p>
-                    <footer>BlackGlitters</footer>
                 </blockquote>
+                <figcaption>BlackGlitters</figcaption>
             </figure>
         </div>
     </section>
@@ -220,17 +299,17 @@
     <section class="section" aria-labelledby="join-title">
         <div class="wrap">
             <div class="join-card">
-                <div>
+                <div class="join-copy">
                     <p class="eyebrow">Become part of the story</p>
                     <h2 id="join-title">Bring your voice.</h2>
                     <p>Join a community where creativity, expression and connection come together.</p>
                 </div>
                 <div class="join-actions">
-                    <a class="btn btn-primary" href="1_pages/community.html">
+                    <a class="btn btn-solid" href="1_pages/community.html">
                         Join Soulville
-                        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                        <svg class="icon icon-move" aria-hidden="true"><use href="#i-arrow"/></svg>
                     </a>
-                    <a class="btn btn-secondary" href="1_pages/donate.html">Support the arts</a>
+                    <a class="btn btn-outline" href="1_pages/donate.html">Support the arts</a>
                 </div>
             </div>
         </div>
@@ -276,29 +355,25 @@
     </div>
 </footer>
 
-<!-- ===================== FLOATING ACTIONS ===================== -->
-
-<div class="floating">
-    <a class="btn btn-book fab-book" href="booking/book.php">Book</a>
-    <a class="fab-wa" href="https://wa.me/27840271783" target="_blank" rel="noopener" aria-label="Chat with Soulville on WhatsApp">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-    </a>
-</div>
+<a class="fab-wa" href="https://wa.me/27840271783" target="_blank" rel="noopener" aria-label="Chat with Soulville on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
 
 <script>
     // Mobile menu
     (function () {
         var toggle = document.getElementById('nav-toggle');
         var nav = document.getElementById('site-nav');
+        function setOpen(open) {
+            toggle.setAttribute('aria-expanded', String(open));
+            nav.setAttribute('data-open', String(open));
+        }
         toggle.addEventListener('click', function () {
-            var open = toggle.getAttribute('aria-expanded') === 'true';
-            toggle.setAttribute('aria-expanded', String(!open));
-            nav.setAttribute('data-open', String(!open));
+            setOpen(toggle.getAttribute('aria-expanded') !== 'true');
         });
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-                toggle.setAttribute('aria-expanded', 'false');
-                nav.setAttribute('data-open', 'false');
+                setOpen(false);
                 toggle.focus();
             }
         });
